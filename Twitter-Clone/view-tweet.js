@@ -28,17 +28,30 @@ const firebaseConfig = {
         }).catch((error) => {
           console.error(error);
         });
-    
-        const tweeters = document.getElementById('tweeters');
+        var z = 0;
+        var b = 0;
+      const tweeters = document.getElementById('tweeters');
         submit.addEventListener("click", function(event){
         for(let i = counter; i < counter+5;i++){
             if(ids[i] != undefined){
             let x = ids[i].tweet;
-            console.log(x);
+            let y = ids[i].email;
+            const ab = getDatabase();
+            const d = ref(ab);
+            get(child(d, '/users/')).then((snapshot) => {
+        if (snapshot.exists()) {
+            const b = snapshot.val();
+            var z = (b[y.replaceAll('.', '_')].username);
             let ul = document.createElement('ul');
-            const node = document.createTextNode("Tweet: " + x);
+            const node = document.createTextNode(z+": " + x);
             ul.appendChild(node);
             tweeters.appendChild(ul);
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
             }
         }
         counter = counter +5;
