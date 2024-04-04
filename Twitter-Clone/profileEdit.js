@@ -24,7 +24,7 @@ const firebaseConfig = {
     event.preventDefault()
     const email = document.getElementById('email').value;
     if(email != document.cookie){
-        alert('Error');
+        alert('This is not the email of currently logged in user');
       }
       else{
     const password = document.getElementById('password').value;

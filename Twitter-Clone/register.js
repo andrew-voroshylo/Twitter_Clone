@@ -38,6 +38,9 @@ const firebaseConfig = {
         alert('Bad Registration');
         console.error(error);
       }
+    },
+    (rejected) => {
+      alert('Your Registration Information is not valid');
     })
   })
  
